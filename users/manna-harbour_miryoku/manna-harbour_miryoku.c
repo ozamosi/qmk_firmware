@@ -7,6 +7,8 @@
 
 #include "manna-harbour_miryoku.h"
 
+#include "ozamosi.c"
+
 
 // Additional Features double tap guard
 
@@ -74,7 +76,9 @@ const uint16_t PROGMEM thumbcombos_sym[] = {KC_UNDS, KC_LPRN, COMBO_END};
 const uint16_t PROGMEM thumbcombos_sym[] = {KC_RPRN, KC_UNDS, COMBO_END};
   #endif
 const uint16_t PROGMEM thumbcombos_fun[] = {KC_SPC, KC_TAB, COMBO_END};
+#endif
 combo_t key_combos[] = {
+#if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
   COMBO(thumbcombos_base_right, LT(U_FUN, KC_DEL)),
   COMBO(thumbcombos_base_left, LT(U_MEDIA, KC_ESC)),
   COMBO(thumbcombos_nav, KC_DEL),
@@ -86,6 +90,15 @@ combo_t key_combos[] = {
   #else
   COMBO(thumbcombos_sym, KC_LPRN),
   #endif
-  COMBO(thumbcombos_fun, KC_APP)
-};
+  COMBO(thumbcombos_fun, KC_APP),
 #endif
+
+  // Custom additions
+  COMBO(se_ao_combo, XP(SE_AO_LC, SE_AO_UC)),
+  COMBO(se_ae_combo, XP(SE_AE_LC, SE_AE_UC)),
+  COMBO(se_oe_combo, XP(SE_OE_LC, SE_OE_UC)),
+  COMBO(dk_ae_combo, XP(DK_AE_LC, DK_AE_UC)),
+  COMBO(dk_oe_combo, XP(DK_OE_LC, DK_OE_UC)),
+  COMBO(de_ue_combo, XP(DE_UE_LC, DE_UE_UC)),
+  COMBO(de_esset_combo, X(DE_ESSET)),
+};
